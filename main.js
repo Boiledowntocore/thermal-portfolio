@@ -9,6 +9,24 @@
   // class, so if this line is never reached the page still renders in full.
   if (!reduced) document.documentElement.classList.add("anim");
 
+  /* ---- Asset cache-busting ----
+     index.html versions styles.css and main.js, but the SVGs and photographs
+     are requested from script and carried no version at all — so after a
+     redraw, browsers (and the Pages CDN, max-age=600) kept serving the previous
+     artwork while the freshly-versioned CSS loaded, and the plates rendered as
+     the OLD drawing. The version is read off this script's own src so there is
+     exactly one number to bump. */
+  var ASSET_V = (function () {
+    var s = document.currentScript ||
+            document.querySelector('script[src*="main.js"]');
+    var m = s && s.src && s.src.match(/[?&]v=([^&]+)/);
+    return m ? m[1] : "";
+  })();
+  function ver(url) {
+    if (!url || !ASSET_V) return url;
+    return url + (url.indexOf("?") === -1 ? "?" : "&") + "v=" + ASSET_V;
+  }
+
   /* ---- Masthead ---- */
   $("masthead").innerHTML =
     '<div class="masthead__inner">' +
@@ -153,7 +171,7 @@
     return '<figure class="plate plate--photo lift">' +
       '<div class="plate__tag">' + m.tag + '</div>' +
       '<div class="plate__frame plate__frame--photo">' +
-        '<img src="' + m.src + '" alt="' + m.alt + '" loading="lazy" decoding="async">' +
+        '<img src="' + ver(m.src) + '" alt="' + m.alt + '" loading="lazy" decoding="async">' +
       '</div>' +
       '<div class="plate__caption">' + m.caption + '</div>' +
     '</figure>';
@@ -227,7 +245,7 @@
         fig.innerHTML =
           '<div class="plate__tag">' + P.tag + '</div>' +
           '<div class="plate__frame plate__frame--portrait">' +
-            '<img src="' + P.src + '" alt="' + P.alt + '" ' +
+            '<img src="' + ver(P.src) + '" alt="' + P.alt + '" ' +
               'width="576" height="768" decoding="async">' +
           '</div>' +
           '<div class="plate__caption">' + P.caption + '</div>';
@@ -239,13 +257,13 @@
       if (rhLeft && !rhLeft.querySelector("img")) {
         var thumb = document.createElement("img");
         thumb.className = "rh__face";
-        thumb.src = P.src;
+        thumb.src = ver(P.src);
         thumb.alt = "";
         thumb.setAttribute("aria-hidden", "true");
         rhLeft.insertBefore(thumb, rhLeft.firstChild);
       }
     };
-    probe.src = P.src;
+    probe.src = ver(P.src);
   })();
 
   /* ---- Footer ---- */
@@ -380,7 +398,7 @@
   }, 4000);
 
   document.querySelectorAll(".plate__frame[data-svg]").forEach(function (frame) {
-    fetch(frame.dataset.svg)
+    fetch(ver(frame.dataset.svg))
       .then(function (r) { return r.text(); })
       .then(function (markup) {
         var holder = document.createElement("div");
@@ -399,7 +417,7 @@
       .catch(function () {
         // Fall back to a plain image if the fetch is blocked.
         var img = document.createElement("img");
-        img.src = frame.dataset.svg;
+        img.src = ver(frame.dataset.svg);
         img.alt = frame.getAttribute("aria-label") || "";
         frame.appendChild(img);
       });
