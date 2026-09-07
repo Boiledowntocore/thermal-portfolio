@@ -129,9 +129,11 @@ public hosting.
 
 ## Photographs
 
-There is exactly one rule: **photographs are greyscale.** See `tools/README.md`.
-The page rations colour to a single red accent; a colour photo becomes a second
-accent and breaks that. Run `tools/grade_photos.py` after adding any image.
+**Photographs are full colour.** They were briefly desaturated to protect the
+single-red-accent rule; Prince chose colour on 2026-09-07 and that stands. The
+schematics are still pure black line art, so the drawing-set character holds
+without the grade, and a hiring page is the wrong place to spend warmth. Run
+`tools/grade_photos.py` after adding any image — it crops and compresses only.
 
 The **portrait** is the drawing set's *title block* — the cell that records who
 drew the sheets — not a seventh figure. That is why it sits at Contact with a

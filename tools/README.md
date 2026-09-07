@@ -8,22 +8,25 @@ and confusing).
 
 | Script | What it does | When to re-run |
 |---|---|---|
-| `grade_photos.py` | Crops the certificate above its signatory block and grades **every** photograph to the same cool greyscale | After adding or replacing any photograph |
+| `grade_photos.py` | Crops the certificate above its signatory block, then resizes and compresses. Colour is preserved | After adding or replacing any photograph |
 | `make_og_card.py` | Renders `assets/media/og-card.jpg`, the 1200×630 link-preview card | After the portrait lands, or if the name/positioning line changes |
 | `reink_svgs.py` | One-off: converted the six schematics from the old dark theme to light line art | Already applied. Only needed if restoring from `assets/media/_dark-backup/` |
 
-## The photo law
+## The photo rule
 
-Every photograph on this site is greyscale. This is not a style preference — the
-page rations colour to a single accent (`--correction` red, about five
-appearances). A saturated gold certificate and a warm trophy shot were becoming a
-second and third accent and quietly breaking that discipline.
+**Photographs are full colour.** They were desaturated for a while, on the
+argument that the page rations colour to a single accent (`--correction` red,
+about five appearances) and a saturated certificate becomes a competing accent.
+Prince overruled that on 2026-09-07 and the reasoning holds up: the schematics
+are still pure black line art, which is what actually carries the drawing-set
+character, and a page whose job is to get someone hired is the wrong place to
+drain the warmth out of a face.
 
-Grading them identically also means there is **one** rule for photographs rather
-than one rule per image, and it drops the SUN Mobility logo on the certificate to
-a neutral value, which the sanitization boundary wants anyway.
+Do not silently re-apply a greyscale grade. If it ever comes back it should be a
+deliberate decision, not a tidy-up.
 
-If you add a photograph, run `grade_photos.py`. Do not hand-place a colour image.
+Run `grade_photos.py` after adding any photograph so sizes and compression stay
+consistent.
 
 ## Adding the portrait
 

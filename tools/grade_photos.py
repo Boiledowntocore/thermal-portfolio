@@ -1,54 +1,43 @@
-"""One photo law for the whole document: photographs are greyscale.
+"""Prepare the site's photographs: crop, resize, compress. Colour is preserved.
 
-The page rations colour to a single accent (--correction red, ~5 appearances).
-A saturated gold certificate and a warm trophy shot were quietly becoming a
-second and third accent, and a greyscale portrait alongside them would have left
-two contradictory rules for the same class of object. Grading every photograph
-the same way restores the discipline — and drops the SUN Mobility logo back to a
-neutral value, which the sanitization boundary wants anyway.
+HISTORY / DO NOT "FIX" THIS BACK:
+An earlier version desaturated every photograph to keep the page's single red
+accent unique. Prince asked for colour (2026-09-07) and that decision stands —
+a colourless portfolio reads cold, and the photographs are the one place on a
+hiring page where warmth is worth spending contrast on. The schematics are still
+pure black line art, so the drawing-set character survives without the grade.
 
-Slightly cool-tinted rather than neutral grey so the images sit with --paper
-#f2f3f4 instead of floating warm against it.
+The certificate crop is NOT an aesthetic choice and must be preserved:
+it cuts above the signatory block so a colleague's handwritten signature, the
+company seal, and her name and title stay out of frame. Nothing is painted over
+— what is withheld is simply not photographed into the crop.
 """
-from PIL import Image, ImageEnhance, ImageOps
+from PIL import Image
 import pathlib
 
 MEDIA = pathlib.Path(r"E:\cowork\thermal-portfolio\assets\media")
 RAW = MEDIA / "raw"
 
-# a hair cooler than neutral, matching the paper's blue lean
-COOL_BLACK = (14, 16, 18)
-COOL_WHITE = (250, 251, 252)
+# Cut line found by scanning for the topmost seal ink; see git history.
+CERT_CROP = (205, 140, 1352, 667)
 
 
-def grade(im, contrast=1.06):
-    g = ImageOps.grayscale(im)
-    g = ImageEnhance.Contrast(g).enhance(contrast)
-    return ImageOps.colorize(g, black=COOL_BLACK, white=COOL_WHITE).convert("RGB")
-
-
-def emit(src_img, out_name, max_w, quality=86):
-    im = src_img
+def emit(im, out_name, max_w, quality=88):
     if im.width > max_w:
         im = im.resize((max_w, round(im.height * max_w / im.width)), Image.LANCZOS)
-    im = grade(im)
     out = MEDIA / out_name
-    im.save(out, "JPEG", quality=quality, optimize=True)
+    im.save(out, "JPEG", quality=quality, optimize=True, subsampling=0)
     print(f"{out_name:26} {im.size}  {out.stat().st_size // 1024} KB")
 
 
-# Certificate: re-crop from the original so the grade is applied once, not twice.
-cert = Image.open(RAW / "recognition.webp").convert("RGB").crop((205, 140, 1352, 667))
+cert = Image.open(RAW / "recognition.webp").convert("RGB").crop(CERT_CROP)
 emit(cert, "award-certificate.jpg", 1147)
 
-trophy = Image.open(RAW / "trophy.webp").convert("RGB")
-emit(trophy, "award-trophy.jpg", 900)
+emit(Image.open(RAW / "trophy.webp").convert("RGB"), "award-trophy.jpg", 900)
 
-# Portrait. Accept whatever extension it was saved with; the page always
-# references portrait.jpg, so the graded output is normalised to that.
 portrait_src = next((p for ext in ("jpg", "jpeg", "png", "webp")
                      for p in RAW.glob(f"portrait.{ext}")), None)
 if portrait_src:
     emit(Image.open(portrait_src).convert("RGB"), "portrait.jpg", 768)
 else:
-    print("portrait.jpg           -- not yet saved to raw/, skipped")
+    print("portrait.jpg           -- not found in raw/, skipped")
