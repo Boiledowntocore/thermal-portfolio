@@ -1,5 +1,7 @@
 # Prince Chauhan — Thermal Engineer portfolio
 
+**Live:** https://boiledowntocore.github.io/thermal-portfolio/
+
 Static single-page site. No build step. Open `index.html` or serve the folder.
 
 ## Run locally
@@ -144,7 +146,9 @@ Contact would otherwise never see a person at all.
 
 `index.html` carries og:/twitter: tags for the link preview card
 (`assets/media/og-card.jpg`). **Both `og:url` and `og:image` must be absolute
-URLs on the real deploy host** — they currently read `REPLACE-WITH-DEPLOY-HOST`.
+URLs on the real deploy host** — they are set to the live Pages origin.
+If the site ever moves (custom domain, different host), update all three tags
+or the preview breaks silently.
 A relative path renders no preview image at all, silently. This card is the only
 part of the site that reaches someone who never opens the link, so it matters
 more than its size suggests.
