@@ -30,7 +30,7 @@ window.SITE = {
       code: "TH-02",
       title: "First-principles BTMS/CTMS architecture",
       sentence: "A coolant-loop architecture sized from heat-load first principles, where the supplied chiller measured well under its rated capacity.",
-      role: "Thermal design lead",
+      role: "Thermal design, supplier validation",
       scale: "20–110 kWh · −10 to 55 °C",
       outcome: "~18% thermal-resistance cut",
       year: "2023–2025",
@@ -71,15 +71,16 @@ window.SITE = {
     { title: "3 kW solar-tree system", clause: "~50% cost, ~80% footprint vs fixed array", year: "2022–2023" }
   ],
 
+  // Straight from the résumé. There is no 2022–23 employment row: the solar-tree
+  // build was an independent project and is listed under Earlier, not here.
   experience: [
-    { year: "2023–", role: "Thermal systems engineer", org: "SUN Mobility", place: "Bengaluru" },
-    { year: "2022–2023", role: "Project engineer", org: "Solar systems", place: "Gujarat" },
-    { year: "2018–2022", role: "Chassis & FEA", org: "GTU Motorsports", place: "Gujarat" }
+    { year: "2023–present", role: "Thermal systems engineer", org: "SUN Mobility", place: "Electric Vehicles Dept · Bengaluru" },
+    { year: "2018–2022", role: "Simulation engineer", org: "GTU Motorsports", place: "Formula Bharat · Gujarat" }
   ],
 
   patents: [
-    { number: "IN 202441065103", title: "Thermal management of chargers", status: "Granted" },
-    { number: "IN 202441065106", title: "Thermal management of energy storage devices", status: "Granted" }
+    { number: "IN 202441065103", title: "Thermal management of chargers", status: "Filed" },
+    { number: "IN 202441065106", title: "Thermal management of energy storage devices", status: "Filed" }
   ],
   patentNote: "Covers India's first automated multi-pack thermal management system for a swapping station.",
   awards: [
