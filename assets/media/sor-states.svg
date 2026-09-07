@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="478" viewBox="0 82 1000 478" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="aC" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#82878c"/></marker>
+    <marker id="aF" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#cc2a1e"/></marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#e9ebec" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="560" fill="url(#grid)"/>
+
+  <!-- transition edges -->
+  <g fill="none" stroke="#82878c" stroke-width="2">
+    <path d="M 500 176 V 232" marker-end="url(#aC)"/>
+    <path d="M 420 250 H 344" marker-end="url(#aC)"/>
+    <path d="M 344 286 H 420" marker-end="url(#aC)"/>
+    <path d="M 580 250 H 656" marker-end="url(#aC)"/>
+    <path d="M 656 286 H 580" marker-end="url(#aC)"/>
+  </g>
+  <!-- standby return (long, top) -->
+  <path d="M 250 232 C 250 130, 750 130, 750 232" fill="none" stroke="#82878c" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#aC)"/>
+  <text x="500" y="128" font-size="11" fill="#82878c" text-anchor="middle" font-family="ui-monospace, monospace">RSU: standby / shutdown</text>
+
+  <!-- fault edges -->
+  <g fill="none" stroke="#cc2a1e" stroke-width="1.8" stroke-dasharray="5 4">
+    <path d="M 260 300 C 300 400, 420 420, 452 424" marker-end="url(#aF)"/>
+    <path d="M 690 300 C 660 400, 560 420, 548 424" marker-end="url(#aF)"/>
+    <path d="M 500 400 V 320" marker-end="url(#aF)"/>
+  </g>
+  <path d="M 452 456 C 300 470, 240 400, 232 296" fill="none" stroke="#82878c" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#aC)"/>
+  <text x="300" y="392" font-size="10.5" fill="#82878c" font-family="ui-monospace, monospace">reset</text>
+
+  <!-- edge labels -->
+  <g font-size="10.5" fill="#82878c" font-family="ui-monospace, monospace">
+    <text x="512" y="208">wake / RSU active</text>
+    <text x="382" y="238" text-anchor="middle">T &gt; set + hyst</text>
+    <text x="382" y="304" text-anchor="middle">T back in band</text>
+    <text x="618" y="238" text-anchor="middle">RSU: heat cmd</text>
+    <text x="618" y="304" text-anchor="middle">T back in band</text>
+    <text x="486" y="360" text-anchor="end">over-pressure /</text>
+    <text x="486" y="374" text-anchor="end">over-temp / flow</text>
+  </g>
+
+  <!-- states -->
+  <g>
+    <rect x="418" y="104" width="164" height="72" rx="12" fill="#ffffff" stroke="#16181a" stroke-width="2"/>
+    <rect x="424" y="110" width="152" height="60" rx="9" fill="none" stroke="#16181a" stroke-width="1"/>
+    <text x="500" y="136" font-size="16" font-weight="700" fill="#16181a" text-anchor="middle">Standby</text>
+    <text x="500" y="156" font-size="11" fill="#82878c" text-anchor="middle" font-family="ui-monospace, monospace">ECU only</text>
+  </g>
+  <g>
+    <rect x="418" y="232" width="164" height="72" rx="12" fill="#ffffff" stroke="#16181a" stroke-width="1.8"/>
+    <text x="500" y="264" font-size="16" font-weight="600" fill="#16181a" text-anchor="middle">Self-circulation</text>
+    <text x="500" y="284" font-size="11" fill="#82878c" text-anchor="middle" font-family="ui-monospace, monospace">pump + valves</text>
+  </g>
+  <g>
+    <rect x="176" y="232" width="164" height="72" rx="12" fill="#ffffff" stroke="#16181a" stroke-width="1.8"/>
+    <text x="258" y="264" font-size="16" font-weight="600" fill="#16181a" text-anchor="middle">Cooling</text>
+    <text x="258" y="284" font-size="11" fill="#16181a" text-anchor="middle" font-family="ui-monospace, monospace">compressor + fan</text>
+  </g>
+  <g>
+    <rect x="660" y="232" width="164" height="72" rx="12" fill="#ffffff" stroke="#16181a" stroke-width="1.8"/>
+    <text x="742" y="264" font-size="16" font-weight="600" fill="#16181a" text-anchor="middle">Heating</text>
+    <text x="742" y="284" font-size="11" fill="#16181a" text-anchor="middle" font-family="ui-monospace, monospace">PTC heater</text>
+  </g>
+  <g>
+    <rect x="418" y="392" width="164" height="64" rx="12" fill="#ffffff" stroke="#cc2a1e" stroke-width="1.8" stroke-dasharray="6 4"/>
+    <text x="500" y="420" font-size="15" font-weight="600" fill="#f0d9d5" text-anchor="middle">Fault</text>
+    <text x="500" y="439" font-size="10.5" fill="#cc2a1e" text-anchor="middle" font-family="ui-monospace, monospace">safe state + alert</text>
+  </g>
+
+  <!-- note -->
+  <rect x="40" y="470" width="470" height="56" rx="10" fill="#ffffff" stroke="#16181a" stroke-width="1.4"/>
+  <text x="58" y="492" font-family="ui-monospace, monospace" font-size="10.5" letter-spacing="1.4" fill="#16181a">SOR</text>
+  <text x="58" y="510" font-size="12" fill="#16181a">Transitions arbitrated by the Thermal ECU over CAN 2.0</text>
+  <text x="58" y="524" font-size="10.5" fill="#82878c" font-family="ui-monospace, monospace">authored in the System-of-Requirements</text>
+
+  <text x="960" y="548" font-family="ui-monospace, monospace" font-size="10.5" fill="#c7cbce" text-anchor="end">State model &#8212; representative logic, protections abbreviated.</text>
+</svg>

@@ -1,0 +1,30 @@
+# ── NEVER COMMIT ─────────────────────────────────────────────────────────────
+# This repo is PUBLIC and is served by GitHub Pages. Anything committed here is
+# public permanently — git history keeps it even after a later deletion.
+
+# Unprocessed source images. Contains internal Sun Mobility factory photos
+# (branding, vendor marks, identifiable colleagues) and the ORIGINAL award
+# certificate still carrying a colleague's handwritten signature and company
+# seal. Only the cropped/graded derivatives in assets/media/ are publishable.
+assets/media/raw/
+
+# Pre-redesign dark SVGs. Superseded, and only useful locally.
+assets/media/_dark-backup/
+
+# ── Housekeeping ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+
+# Local dev config, not part of the published site
+.claude/
+
+# Derived factory photos pending Sun Mobility sign-off — kept out of the build
+assets/media/photo-*.jpg

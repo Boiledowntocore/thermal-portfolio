@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="478" viewBox="0 82 1000 478" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#e9ebec" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="560" fill="url(#grid)"/>
+
+  <!-- legend -->
+  <g font-family="ui-monospace, monospace" font-size="11.5" fill="#82878c">
+    <line x1="690" y1="104" x2="716" y2="104" stroke="#16181a" stroke-width="3"/><text x="722" y="108">Datasheet</text>
+    <line x1="690" y1="123" x2="716" y2="123" stroke="#cc2a1e" stroke-width="3"/><text x="722" y="127">Measured (trial)</text>
+  </g>
+
+  <!-- gridlines + y ticks -->
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#82878c">
+    <line x1="130" y1="169" x2="910" y2="169" stroke="#ffffff" stroke-width="1"/><text x="122" y="173" text-anchor="end">100</text>
+    <line x1="130" y1="242" x2="910" y2="242" stroke="#ffffff" stroke-width="1"/><text x="122" y="246" text-anchor="end">75</text>
+    <line x1="130" y1="314" x2="910" y2="314" stroke="#ffffff" stroke-width="1"/><text x="122" y="318" text-anchor="end">50</text>
+    <line x1="130" y1="387" x2="910" y2="387" stroke="#ffffff" stroke-width="1"/><text x="122" y="391" text-anchor="end">25</text>
+  </g>
+
+  <!-- axes -->
+  <line x1="130" y1="140" x2="130" y2="460" stroke="#c7cbce" stroke-width="1.4"/>
+  <line x1="130" y1="460" x2="910" y2="460" stroke="#c7cbce" stroke-width="1.4"/>
+
+  <!-- x ticks -->
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#82878c" text-anchor="middle">
+    <text x="130" y="480">44</text><text x="471" y="480">50</text><text x="618" y="480">53</text><text x="764" y="480">56</text><text x="910" y="480">60</text>
+  </g>
+
+  <!-- "rated to here" marker -->
+  <line x1="471" y1="150" x2="471" y2="460" stroke="#c7cbce" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="466" y="163" font-family="ui-monospace, monospace" font-size="10.5" fill="#82878c" text-anchor="end">full power &#8804; ~50 &#176;C</text>
+
+  <!-- datasheet curve -->
+  <polyline points="130,169 471,169 520,205 666,242 861,271 910,276" fill="none" stroke="#16181a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#16181a"><circle cx="520" cy="205" r="5"/><circle cx="666" cy="242" r="5"/><circle cx="861" cy="271" r="5"/></g>
+  <text x="918" y="272" font-size="12" font-weight="600" fill="#16181a">Datasheet</text>
+
+  <!-- measured curve -->
+  <polyline points="130,169 471,169 520,213 610,236 666,253 730,272 861,300 910,305" fill="none" stroke="#cc2a1e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#cc2a1e"><circle cx="520" cy="213" r="5"/><circle cx="666" cy="253" r="5"/><circle cx="861" cy="300" r="5"/></g>
+  <text x="918" y="309" font-size="12" font-weight="600" fill="#cc2a1e">Measured</text>
+
+  <!-- annotation -->
+  <text x="150" y="420" font-size="13" fill="#82878c">Above ~50 &#176;C ambient the module lost output faster than</text>
+  <text x="150" y="438" font-size="13" fill="#82878c">its datasheet curve &#8212; deviation raised with the supplier.</text>
+
+  <!-- axis titles -->
+  <text x="520" y="502" font-size="12" fill="#82878c" text-anchor="middle" font-family="ui-monospace, monospace">Rectifier temperature (&#176;C)</text>
+  <text x="70" y="300" font-size="12" fill="#82878c" text-anchor="middle" font-family="ui-monospace, monospace" transform="rotate(-90 70 300)">Output power (% of rated)</text>
+
+  <text x="910" y="540" font-family="ui-monospace, monospace" font-size="10" fill="#c7cbce" text-anchor="end">Normalised to rated output &#8212; no vendor, part number or absolute ratings shown. Representative of measured trend.</text>
+</svg>

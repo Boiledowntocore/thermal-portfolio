@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="478" viewBox="0 82 1000 478" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#e9ebec" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="560" fill="url(#grid)"/>
+
+  <!-- legend -->
+  <g font-family="ui-monospace, monospace" font-size="11.5" fill="#82878c">
+    <line x1="700" y1="104" x2="726" y2="104" stroke="#16181a" stroke-width="3"/><text x="732" y="108">Rated (datasheet)</text>
+    <line x1="700" y1="123" x2="726" y2="123" stroke="#cc2a1e" stroke-width="3"/><text x="732" y="127">Measured</text>
+  </g>
+
+  <!-- gridlines + y ticks -->
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#82878c">
+    <line x1="130" y1="169" x2="910" y2="169" stroke="#ffffff" stroke-width="1"/><text x="122" y="173" text-anchor="end">100</text>
+    <line x1="130" y1="242" x2="910" y2="242" stroke="#ffffff" stroke-width="1"/><text x="122" y="246" text-anchor="end">75</text>
+    <line x1="130" y1="314" x2="910" y2="314" stroke="#ffffff" stroke-width="1"/><text x="122" y="318" text-anchor="end">50</text>
+    <line x1="130" y1="387" x2="910" y2="387" stroke="#ffffff" stroke-width="1"/><text x="122" y="391" text-anchor="end">25</text>
+  </g>
+
+  <!-- axes -->
+  <line x1="130" y1="140" x2="130" y2="460" stroke="#c7cbce" stroke-width="1.4"/>
+  <line x1="130" y1="460" x2="910" y2="460" stroke="#c7cbce" stroke-width="1.4"/>
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#82878c" text-anchor="middle">
+    <text x="130" y="480">25</text><text x="325" y="480">30</text><text x="520" y="480">35</text><text x="715" y="480">40</text><text x="910" y="480">45</text>
+  </g>
+
+  <!-- shortfall band -->
+  <path d="M130,169 L910,169 L910,338 L780,332 L650,326 L520,316 L390,312 L255,300 L130,295 Z" fill="#cc2a1e" opacity="0.10"/>
+
+  <!-- rated line -->
+  <polyline points="130,169 910,169" fill="none" stroke="#16181a" stroke-width="3" stroke-linecap="round"/>
+  <text x="150" y="161" font-size="12" font-weight="600" fill="#16181a">Rated</text>
+
+  <!-- measured line -->
+  <polyline points="130,295 255,300 390,312 520,316 650,326 780,332 910,338" fill="none" stroke="#cc2a1e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#cc2a1e"><circle cx="130" cy="295" r="5"/><circle cx="390" cy="312" r="5"/><circle cx="650" cy="326" r="5"/><circle cx="910" cy="338" r="5"/></g>
+  <text x="918" y="342" font-size="12" font-weight="600" fill="#cc2a1e">Measured</text>
+
+  <!-- annotation -->
+  <text x="300" y="245" font-size="13" fill="#82878c" text-anchor="middle">capacity shortfall</text>
+  <text x="150" y="418" font-size="13" fill="#82878c">Delivered roughly half of rated capacity, and the gap</text>
+  <text x="150" y="436" font-size="13" fill="#82878c">widened as ambient rose &#8212; escalated to the supplier.</text>
+
+  <!-- axis titles -->
+  <text x="520" y="502" font-size="12" fill="#82878c" text-anchor="middle" font-family="ui-monospace, monospace">Ambient temperature (&#176;C)</text>
+  <text x="70" y="300" font-size="12" fill="#82878c" text-anchor="middle" font-family="ui-monospace, monospace" transform="rotate(-90 70 300)">Cooling capacity (% of rated)</text>
+
+  <text x="910" y="540" font-family="ui-monospace, monospace" font-size="10" fill="#c7cbce" text-anchor="end">Normalised to rated capacity &#8212; no vendor, part number or absolute kW shown. Representative of measured trend.</text>
+</svg>
