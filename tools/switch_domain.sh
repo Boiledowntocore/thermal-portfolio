@@ -40,11 +40,12 @@ git remote set-url origin "https://github.com/${USER_NEW}/${REPO_NEW}.git"
 #    back to anything — the card silently renders blank.
 python - "$URL_NEW" <<'PY'
 import io, re, sys
-url = sys.argv[1]
+url = sys.argv[1]                      # e.g. https://name.github.io/
 p = "index.html"
 s = io.open(p, encoding="utf-8").read()
-s = re.sub(r'https://[a-z0-9.-]*\.github\.io/[^"]*?(?=")',
-           lambda m: url + m.group(0).split(".github.io/", 1)[1].lstrip("/"), s)
+# Replace the whole old origin AND any repo path segment. A user site lives at
+# the root, so the previous /<repo>/ prefix must be dropped, not carried over.
+s = re.sub(r'https://[A-Za-z0-9.-]+\.github\.io/(?:[^"]*?/)?(?=assets/|")', url, s)
 io.open(p, "w", encoding="utf-8").write(s)
 print("   og/twitter tags ->", url)
 PY

@@ -1,6 +1,6 @@
 # Prince Chauhan — Thermal Engineer portfolio
 
-**Live:** https://boiledowntocore.github.io/thermal-portfolio/
+**Live:** https://princechauhan-thermal.github.io/
 
 Static single-page site. No build step. Open `index.html` or serve the folder.
 
