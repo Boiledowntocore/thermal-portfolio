@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="478" viewBox="0 82 1000 478" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif">
   <defs>
-    <marker id="aA" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#16181a"/></marker>
-    <marker id="aC" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#16181a"/></marker>
+    <marker id="aA" class="mk mk--hot" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#c62f1e"/></marker>
+    <marker id="aC" class="mk mk--cold" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#1f6fb2"/></marker>
     <marker id="aG" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#82878c"/></marker>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M40 0H0V40" fill="none" stroke="#e9ebec" stroke-width="1"/>
@@ -11,19 +11,19 @@
 
   <!-- legend -->
   <g font-family="ui-monospace, monospace" font-size="11" fill="#82878c">
-    <line x1="720" y1="104" x2="748" y2="104" stroke="#16181a" stroke-width="3"/><text x="754" y="108">warm coolant</text>
-    <line x1="720" y1="122" x2="748" y2="122" stroke="#16181a" stroke-width="3" stroke-dasharray="11 6"/><text x="754" y="126">chilled coolant</text>
+    <line x1="720" y1="104" x2="748" y2="104" stroke="#c62f1e" stroke-width="3"/><text x="754" y="108">warm coolant</text>
+    <line x1="720" y1="122" x2="748" y2="122" stroke="#1f6fb2" stroke-width="3"/><text x="754" y="126">chilled coolant</text>
     <line x1="720" y1="140" x2="748" y2="140" stroke="#82878c" stroke-width="3"/><text x="754" y="144">heat &#8594; air</text>
-    <line x1="720" y1="158" x2="748" y2="158" stroke="#16181a" stroke-width="1.4" stroke-dasharray="4 3"/><text x="754" y="162">sensor &#8594; DAQ</text>
+    <line x1="720" y1="158" x2="748" y2="158" stroke="#1f6fb2" stroke-width="1.4" stroke-dasharray="4 3"/><text x="754" y="162">sensor &#8594; DAQ</text>
   </g>
 
   <!-- coolant racetrack -->
-  <path d="M 440 150 H 560 A 60 60 0 0 1 620 210 V 236" fill="none" stroke="#16181a" stroke-width="3" marker-end="url(#aA)"/>
-  <path d="M 620 330 V 380 A 60 60 0 0 1 560 440 H 320 A 60 60 0 0 1 260 380 V 210 A 60 60 0 0 1 320 150 H 348" fill="none" stroke="#16181a" stroke-width="3" stroke-dasharray="11 6" marker-end="url(#aC)"/>
-  <path d="M 540 143 l 9 7 l -9 7" fill="none" stroke="#16181a" stroke-width="2.4"/>
-  <path d="M 627 350 l -7 9 l -7 -9" fill="none" stroke="#16181a" stroke-width="2.4"/>
-  <path d="M 360 447 l -9 -7 l 9 -7" fill="none" stroke="#16181a" stroke-width="2.4"/>
-  <path d="M 253 250 l 7 -9 l 7 9" fill="none" stroke="#16181a" stroke-width="2.4"/>
+  <path class="flow flow--hot" d="M 440 150 H 560 A 60 60 0 0 1 620 210 V 236" fill="none" stroke="#c62f1e" stroke-width="3" marker-end="url(#aA)"/>
+  <path class="flow flow--cold" d="M 620 330 V 380 A 60 60 0 0 1 560 440 H 320 A 60 60 0 0 1 260 380 V 210 A 60 60 0 0 1 320 150 H 348" fill="none" stroke="#1f6fb2" stroke-width="3" marker-end="url(#aC)"/>
+  <path d="M 540 143 l 9 7 l -9 7" fill="none" stroke="#c62f1e" stroke-width="2.4"/>
+  <path d="M 627 350 l -7 9 l -7 -9" fill="none" stroke="#1f6fb2" stroke-width="2.4"/>
+  <path d="M 360 447 l -9 -7 l 9 -7" fill="none" stroke="#1f6fb2" stroke-width="2.4"/>
+  <path d="M 253 250 l 7 -9 l 7 9" fill="none" stroke="#1f6fb2" stroke-width="2.4"/>
 
   <text x="440" y="312" font-family="ui-monospace, monospace" font-size="11" fill="#82878c" text-anchor="middle">glycol&#8211;water loop</text>
 
@@ -35,24 +35,24 @@
   <!-- pack -->
   <g>
     <rect x="360" y="100" width="160" height="104" rx="10" fill="#ffffff" stroke="#16181a" stroke-width="1.6"/>
-    <text x="374" y="124" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1.5" fill="#16181a">PACK</text>
+    <text x="374" y="124" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1.5" fill="#1f6fb2">PACK</text>
     <text x="374" y="146" font-size="16" font-weight="600" fill="#16181a">Battery pack</text>
     <text x="374" y="166" font-size="11.5" fill="#82878c">650 kg class</text>
     <text x="374" y="184" font-size="11.5" font-weight="600" fill="#cc2a1e">hold 25&#8211;35 &#176;C</text>
-    <circle cx="474" cy="116" r="3.5" fill="#16181a"/><circle cx="489" cy="116" r="3.5" fill="#16181a"/><circle cx="504" cy="116" r="3.5" fill="#16181a"/>
+    <circle cx="474" cy="116" r="3.5" fill="#1f6fb2"/><circle cx="489" cy="116" r="3.5" fill="#1f6fb2"/><circle cx="504" cy="116" r="3.5" fill="#1f6fb2"/>
   </g>
 
   <!-- pump -->
   <g>
     <rect x="365" y="398" width="150" height="84" rx="10" fill="#ffffff" stroke="#16181a" stroke-width="1.6"/>
-    <text x="378" y="422" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1.5" fill="#16181a">P1</text>
+    <text x="378" y="422" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1.5" fill="#1f6fb2">P1</text>
     <text x="378" y="444" font-size="16" font-weight="600" fill="#16181a">Coolant pump</text>
     <text x="378" y="464" font-size="11.5" fill="#82878c">sized to supercharge &#916;T</text>
   </g>
   <!-- chiller -->
   <g>
     <rect x="545" y="230" width="150" height="98" rx="10" fill="#ffffff" stroke="#16181a" stroke-width="1.6"/>
-    <text x="558" y="254" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1.5" fill="#16181a">CHILLER</text>
+    <text x="558" y="254" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1.5" fill="#1f6fb2">CHILLER</text>
     <text x="558" y="276" font-size="16" font-weight="600" fill="#16181a">Refrigeration</text>
     <text x="558" y="296" font-size="11.5" fill="#82878c">rejects to radiator</text>
     <text x="558" y="314" font-size="11.5" fill="#82878c">under 110 kWh charge</text>
@@ -63,7 +63,7 @@
     <g transform="translate(840,246)">
       <circle r="44" fill="#ffffff" stroke="#16181a" stroke-width="1.5"/>
       <g stroke="#c7cbce" stroke-width="1.3" fill="none"><circle r="35"/><circle r="23"/><circle r="11"/></g>
-      <g fill="none" stroke="#16181a" stroke-width="1.25">
+      <g class="fan" fill="none" stroke="#16181a" stroke-width="1.25"><circle r="34" fill="none" stroke="none"/>
         <path d="M0 0C12 -5 23 -2 30 -12C17 -12 7 -10 0 0Z"/>
         <path d="M0 0C12 -5 23 -2 30 -12C17 -12 7 -10 0 0Z" transform="rotate(120)"/>
         <path d="M0 0C12 -5 23 -2 30 -12C17 -12 7 -10 0 0Z" transform="rotate(240)"/>
@@ -73,13 +73,13 @@
   </g>
 
   <!-- DAQ + sensor lines -->
-  <g stroke="#16181a" stroke-width="1.3" stroke-dasharray="4 3" opacity="0.55" fill="none">
+  <g stroke="#1f6fb2" stroke-width="1.3" stroke-dasharray="4 3" opacity="0.55" fill="none">
     <path d="M 485 100 C 560 60, 690 360, 675 430"/>
     <path d="M 440 482 C 470 500, 560 500, 600 486"/>
   </g>
   <g>
     <rect x="600" y="430" width="160" height="80" rx="10" fill="#ffffff" stroke="#16181a" stroke-width="1.5"/>
-    <text x="616" y="453" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1.5" fill="#16181a">DAQ</text>
+    <text x="616" y="453" font-family="ui-monospace, monospace" font-size="11" letter-spacing="1.5" fill="#1f6fb2">DAQ</text>
     <text x="616" y="474" font-size="15" font-weight="600" fill="#16181a">Data acquisition</text>
     <text x="616" y="493" font-size="11.5" fill="#82878c">temp &#183; flow &#183; power</text>
   </g>

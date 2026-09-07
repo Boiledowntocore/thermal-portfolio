@@ -661,6 +661,45 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 
+/* ---- Live schematics ----
+   Colour carries meaning on the loop plates: red is hot coolant, blue is
+   chilled, grey is heat leaving to air. The charts use --correction red for a
+   measured finding instead — no plate contains both, so the two reds never
+   share a frame.
+
+   Nothing here runs until main.js adds .is-live, which it does only after the
+   plate has finished drawing itself. Starting earlier would fight the draw-on
+   for control of stroke-dashoffset. */
+
+.plate__frame svg .flow {
+  stroke-dasharray: 15 11;
+}
+.plate__frame svg.is-live .flow {
+  animation: flow-march 1.15s linear infinite;
+}
+/* Chilled side runs a little slower — a cold loop reads calmer, and the offset
+   speeds stop the two runs pulsing in lockstep, which looks mechanical. */
+.plate__frame svg.is-live .flow--cold {
+  animation-duration: 1.5s;
+}
+@keyframes flow-march {
+  to { stroke-dashoffset: -26; }
+}
+
+/* Fan blades. transform-box:fill-box makes the blades rotate about their own
+   centre; without it the origin resolves against the whole viewBox and the fan
+   swings around the corner of the drawing instead of spinning. */
+.plate__frame svg .fan {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.plate__frame svg.is-live .fan {
+  animation: fan-spin 2.6s linear infinite;
+}
+@keyframes fan-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Content rises into place as you scroll down to it — it travels upward,
    never downward, so the page reads as lifting toward the reader.
 
@@ -800,4 +839,11 @@ img { max-width: 100%; display: block; }
     transition: none !important;
   }
   .rh__progress { display: none; }
+  /* Looping motion is the specific thing this setting exists to stop — a
+     continuously marching line can trigger vestibular symptoms. Colour and
+     dash pattern still carry the hot/cold meaning with nothing moving. */
+  .plate__frame svg .flow,
+  .plate__frame svg .fan {
+    animation: none !important;
+  }
 }

@@ -299,20 +299,37 @@
       fades.push(el);
     });
 
-    return { strokes: strokes, fades: fades };
+    return { strokes: strokes, fades: fades, svg: svg };
   }
 
   function plot(p) {
+    var last = 0;
     p.strokes.forEach(function (el, i) {
       var d = 40 + (i % 14) * 45;
+      last = Math.max(last, d + 760);
       el.style.transition = "stroke-dashoffset 760ms cubic-bezier(.22,.61,.36,1) " + d + "ms";
       el.style.strokeDashoffset = "0";
     });
     p.fades.forEach(function (el, i) {
       var d = 300 + (i % 22) * 26;
+      last = Math.max(last, d + 460);
       el.style.transition = "opacity 460ms ease " + d + "ms";
       el.style.opacity = "1";
     });
+
+    // Once the drawing has settled, hand the coolant runs and fans over to the
+    // looping CSS animations. The inline dasharray/offset written by prime()
+    // must be cleared first, or it outranks the stylesheet and the flow sits
+    // frozen at whatever offset the draw-on left behind.
+    if (!p.svg) return;
+    setTimeout(function () {
+      p.svg.querySelectorAll(".flow").forEach(function (el) {
+        el.style.strokeDasharray = "";
+        el.style.strokeDashoffset = "";
+        el.style.transition = "";
+      });
+      p.svg.classList.add("is-live");
+    }, last + 120);
   }
 
   /* ==========================================================

@@ -65,11 +65,21 @@ Six SVGs, re-inked from the old dark theme to black-on-white line art:
 | 5 | `rectifier-derating.svg` | TH-03 |
 | 6 | `sor-states.svg` | TH-04 |
 
-Colour is **not** an information channel any more. Flow is encoded with
-arrowheads and linetype instead — warm coolant solid, chilled coolant dashed —
-so the drawings survive greyscale printing and colour-blind readers. The one
-exception is `--correction`, which marks a measured finding (the shortfall traces
-in FIG. 3 and FIG. 5, the "hold 25–35 °C" callout in FIG. 1).
+On the three loop plates colour carries the domain's own convention:
+**red = hot coolant, blue = chilled, grey = heat rejected to air.** Arrowheads
+still give direction, so the drawings survive greyscale printing, and red/blue is
+one of the safest pairs for colour-vision deficiency. Everything structural stays
+ink.
+
+The charts (FIG. 3 / FIG. 5) instead use `--correction` red for the measured
+finding. No plate contains both a coolant run and a chart, so the two reds never
+share a frame — check that still holds before moving a figure between projects.
+
+`tools/reink_svgs.py` regenerates these from `assets/media/_dark-backup/`, **not**
+from the live files. The dark originals are the only remaining record of which
+run was warm and which was chilled (authored as `#f2a53c` / `#22b8e6`); the live
+files were flattened to one ink colour at one point, so re-running the script
+against them would tag nothing.
 
 Each SVG's own title and kicker were stripped and its viewBox cropped past them
 (`viewBox="0 82 1000 478"`), because the plate frame already prints
@@ -99,8 +109,22 @@ meaning with it, so those fade rather than draw — overwriting the dash to anim
 would destroy the distinction. Geometry inside `<defs>` is skipped entirely;
 animating it blanks the arrowheads instead of drawing them.
 
-Everything is gated on `prefers-reduced-motion`, which falls back to a plain
-`<img>`-equivalent static render.
+Once a plate has finished drawing, `main.js` adds `.is-live` to that SVG and the
+schematic starts running: coolant dashes march along the flow direction and the
+radiator fans spin. The inline `stroke-dasharray` written by `prime()` is cleared
+at handover — leave it in place and it outranks the stylesheet, freezing the
+flow at whatever offset the draw-on stopped at.
+
+**The fan groups contain an invisible `<circle r="34">`, and it is load-bearing.**
+CSS rotates a `fill-box` element about its bounding-box centre, and three blades
+radiating from a hub give an asymmetric box (~3 units off), so the blades would
+orbit that offset instead of spinning. The concentric circle contributes geometry
+without painting anything, forcing the box symmetric. Do not remove it.
+
+Everything is gated on `prefers-reduced-motion`, which stops the looping flow and
+fan animations outright — continuous motion is the specific thing that setting
+exists to prevent — and falls back to a static render. Colour still carries the
+hot/cold meaning with nothing moving.
 
 ## Cache-busting
 
